@@ -10,11 +10,11 @@ COPY . /build
 
 # 仅构建 share-auth 及其依赖，彻底跳过测试的编译与执行
 # -pl 指定模块，-am 自动构建依赖模块
-RUN mvn -T 1C clean package -pl share-modules/share-auth -am -DskipTests -Dmaven.test.skip=true
+RUN mvn -T 1C clean package -pl share-auth -am -DskipTests -Dmaven.test.skip=true
 
 # 将目标模块生成的 jar 统一复制为 /build/app.jar（避免版本号差异导致 COPY 失败）
 RUN set -eux; \
-	JAR_PATH=$(find /build -type f -path "*/share-modules/share-auth/target/*.jar" | head -n 1); \
+	JAR_PATH=$(find /build -type f -path "*/share-auth/target/*.jar" | head -n 1); \
 	echo "Found JAR: $JAR_PATH"; \
 	cp "$JAR_PATH" /build/app.jar
 
