@@ -35,4 +35,7 @@ ENV JAVA_OPTS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -Djava.securit
 # 暴露与 SpringBoot server.port 一致的端口（如未改动，默认 8080）
 EXPOSE 8080
 
+# 强制将 Spring Boot 端口设置为 8080（环境变量会覆盖配置文件中的 server.port）
+ENV SERVER_PORT=8080
+
 ENTRYPOINT ["sh","-c","java $JAVA_OPTS -jar /app/app.jar"]
