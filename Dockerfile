@@ -5,8 +5,7 @@ WORKDIR /build
 # 拷贝所有源码到容器并执行打包（可并行）
 COPY . /build
 # 如果网络慢或你希望更细化，可以指定 -pl 指定模块，如 -pl share-modules/share-auth
-RUN mvn -T 1C -DskipTests clean package
-
+RUN mvn -T 1C clean package -DskipTests -Dmaven.test.skip=true
 # 2) 运行时镜像：仅复制目标模块的 jar（这里示例为 share-auth 模块）
 FROM eclipse-temurin:17-jre
 WORKDIR /app
