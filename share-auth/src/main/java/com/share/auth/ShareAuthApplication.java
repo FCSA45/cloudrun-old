@@ -15,6 +15,7 @@ import com.share.common.security.feign.FeignAutoConfiguration;
 @EnableRyFeignClients
 @Import(FeignAutoConfiguration.class)
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
+@ComponentScan("com.share")    
 public class ShareAuthApplication
 {
     public static void main(String[] args)
